@@ -10,7 +10,7 @@ fn main() -> io::Result<()> {
     let backend = CrosstermBackend::new(stdout);
     let mut term = Terminal::new(backend)?;
 
-    let query = ui::input()?;
+    let query = ui::input(&mut term)?;
     let manga_list = api::search_manga(&query.trim())?;
 
     ui::output(&mut term, &manga_list)?;
